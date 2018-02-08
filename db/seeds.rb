@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do
+  User.create(username: Faker::Overwatch.hero)
+end
+
+10.times do
+  Friendship.create(user_id: User.all.sample, friend_id: User.all.sample)
+end
+
+3.times do
+  Chat.create()
+end
+
+Chat.all.each do |c|
+  UserChat.create(user_id: User.all.sample.id, chat_id: c.id)
+  UserChat.create(user_id: User.all.sample.id, chat_id: c.id)
+end
+
+20.times do
+  chat = Chat.all.sample.id
+  user = User.all.sample.id
+  Message.create(content: Faker::Overwatch.quote, chat_id: chat, user_id: user)
+end

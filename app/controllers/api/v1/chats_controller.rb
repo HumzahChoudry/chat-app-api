@@ -1,18 +1,17 @@
-class UsersController < ApplicationController
+class ChatsController < ApplicationController
 
   def create
-    byebug
+
     render json
   end
 
   def new
-
     render json
   end
 
   def show
-    users = User.all
-    render json: users
+
+    render json
   end
 
   def edit
@@ -22,6 +21,6 @@ class UsersController < ApplicationController
 
   def destroy
 
+    
   end
-
 end

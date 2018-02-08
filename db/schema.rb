@@ -31,13 +31,21 @@ ActiveRecord::Schema.define(version: 20180207204306) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
+    t.bigint "chat_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "user_chats", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_user_chats_on_chat_id"
+    t.index ["user_id"], name: "index_user_chats_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
