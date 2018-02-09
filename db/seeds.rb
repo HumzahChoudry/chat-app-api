@@ -11,7 +11,7 @@
 end
 
 10.times do
-  Friendship.create(user_id: User.all.sample, friend_id: User.all.sample)
+  Friendship.create(user_id: User.all.sample.id, friend_id: User.all.sample.id)
 end
 
 3.times do

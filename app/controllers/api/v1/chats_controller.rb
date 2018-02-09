@@ -1,8 +1,8 @@
-class ChatsController < ApplicationController
+class Api::V1::ChatsController < ApplicationController
 
   def create
-
-    render json
+    chat = Chat.create()
+    render json: chat
   end
 
   def new
@@ -21,6 +21,5 @@ class ChatsController < ApplicationController
 
   def destroy
 
-    
   end
 end

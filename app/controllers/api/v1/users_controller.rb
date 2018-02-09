@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
 
   def create
     byebug
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     render json
   end
 
-  def show
+  def index
     users = User.all
     render json: users
   end
