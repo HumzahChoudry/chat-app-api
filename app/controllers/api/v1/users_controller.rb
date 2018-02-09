@@ -2,7 +2,13 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     byebug
-    render json
+
+    #find or create by username
+
+    #if exists retrieve freinds, chats
+
+    #else
+    render json: #something
   end
 
   def new
@@ -15,6 +21,7 @@ class Api::V1::UsersController < ApplicationController
     render json: users
   end
 
+
   def edit
 
     render json
@@ -23,5 +30,18 @@ class Api::V1::UsersController < ApplicationController
   def destroy
 
   end
+
+  #helper methods
+
+
+    def show_friends
+      friends = find_friends
+      return friends
+    end
+
+    def show_chats
+      chats = find_chats
+      return chats
+    end 
 
 end

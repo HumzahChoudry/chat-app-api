@@ -12,6 +12,11 @@ class Api::V1::FriendshipsController < ApplicationController
     redirect_to users_path
   end
 
+  def index
+    friends = Friend.all 
+    return json: friends
+  end
+
   def destroy
     Friendship.destroy_reciprocal_for_ids(current_user_id, params[:friend_id])
     redirect_to(request.referer)
