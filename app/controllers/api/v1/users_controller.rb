@@ -1,14 +1,15 @@
 class Api::V1::UsersController < ApplicationController
 
   def create
+    user = User.find_or_create_by(username: params[:user][:username])
+
+    friends = user.friends
+
+    chats = user.chats
+
+    user_info = {user: user, friends: friends, chats: chats}
     byebug
-
-    #find or create by username
-
-    #if exists retrieve freinds, chats
-
-    #else
-    render json: #something
+    render json: user_info
   end
 
   def new
@@ -33,15 +34,14 @@ class Api::V1::UsersController < ApplicationController
 
   #helper methods
 
-
-    def show_friends
-      friends = find_friends
-      return friends
-    end
-
-    def show_chats
-      chats = find_chats
-      return chats
-    end 
+    # def show_friends
+    #   friends = find_friends
+    #   return friends
+    # end
+    #
+    # def show_chats
+    #   chats = find_chats
+    #   return chats
+    # end
 
 end
