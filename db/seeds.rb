@@ -15,7 +15,7 @@ end
 end
 
 3.times do
-  Chat.create()
+  Chat.create(title: Faker::Overwatch.location)
 end
 
 Chat.all.each do |c|

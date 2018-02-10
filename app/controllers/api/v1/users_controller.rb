@@ -2,13 +2,10 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.find_or_create_by(username: params[:user][:username])
-
     friends = user.friends
-
     chats = user.chats
-
     user_info = {user: user, friends: friends, chats: chats}
-    byebug
+
     render json: user_info
   end
 
