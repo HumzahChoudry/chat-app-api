@@ -10,8 +10,8 @@ class Api::V1::ChatsController < ApplicationController
   end
 
   def show
-
-    render json
+    messages = Message.all.where(chat_id: params[:id])
+    render json: {messages: messages}
   end
 
   def edit
