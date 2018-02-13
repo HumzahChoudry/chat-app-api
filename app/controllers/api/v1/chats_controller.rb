@@ -28,8 +28,10 @@ class Api::V1::ChatsController < ApplicationController
    @chat = Chat.find(params[:id])
 
    @new_message = Message.create(content: params[:messages][:content], chat_id: params[:messages][:chat_id], user_id: params[:messages][:user_id], chat: @chat)
-   
-   render json: @chat
+   ActionCable.server.broadcast('my_feed', @chat)
+   return_json = @chat.messages
+
+   render json: return_json
 
   end
 end
