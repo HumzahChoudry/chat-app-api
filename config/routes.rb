@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :users
       resources :friendships
       resources :chats
+
+      post '/chats/:id/messages', to: 'chats#send_message'
       mount ActionCable.server => '/cable'
     end
   end
