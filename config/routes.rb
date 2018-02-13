@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :friendships
       resources :chats
+      
       mount ActionCable.server => '/cable'
     end
   end
