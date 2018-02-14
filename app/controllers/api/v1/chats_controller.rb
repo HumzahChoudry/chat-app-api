@@ -10,8 +10,7 @@ class Api::V1::ChatsController < ApplicationController
   end
 
   def show
-    messages = Message.all.where(chat_id: params[:id])
-
+    messages = Chat.find(params[:id]).message_with_usernames
     render json: {messages: messages}
   end
 
@@ -29,8 +28,7 @@ class Api::V1::ChatsController < ApplicationController
 
    @new_message = Message.create(content: params[:messages][:content], chat_id: params[:messages][:chat_id], user_id: params[:messages][:user_id], chat: @chat)
    ActionCable.server.broadcast('my_feed', @chat)
-   return_json = @chat.messages
-
+   return_json = @chat.message_with_usernames
    render json: return_json
 
   end
