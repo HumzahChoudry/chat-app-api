@@ -7,11 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-  User.create(username: Faker::Overwatch.hero)
+  User.find_or_create_by(username: Faker::Overwatch.hero)
 end
 
-10.times do
-  Friendship.create(user_id: User.all.sample.id, friend_id: User.all.sample.id)
+User.all.each do |user|
+  friend = User.all.sample
+  if friend.id != user.id
+    Friendship.create(user_id: user.id, friend_id: friend.id)
+    Friendship.create(user_id: friend.id, friend_id: user.id)
+  end
 end
 
 3.times do
@@ -19,8 +23,9 @@ end
 end
 
 Chat.all.each do |c|
-  UserChat.create(user_id: User.all.sample.id, chat_id: c.id)
-  UserChat.create(user_id: User.all.sample.id, chat_id: c.id)
+  person = User.all.sample
+  UserChat.create(user_id: person.id, chat_id: c.id)
+  UserChat.create(user_id: person.friends.sample.id, chat_id: c.id)
 end
 
 20.times do
